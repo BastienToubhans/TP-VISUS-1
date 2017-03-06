@@ -125,6 +125,9 @@ IsoSurfacer* Editor::extractIsoSurface(const double &isoValue){
 	isosurface->SetInput(inputMesh_);
 	isosurface->SetValue(isoValue);
 
+	//QUESTION 13
+	isosurface->SetType(Editor::type_);
+
 	//QUESTION 15:set neighbors
 		
 
@@ -188,7 +191,64 @@ int Editor::loadInputMesh (const string &fileName){
     << " cells)" << endl;
   
   //QUESTION 14
-  //tetNeighbors_ initialisation
+  /*for (int i = 0; i < inputMesh_->GetNumberOfCells(); i++)
+  {
+	  vtkIdList* pointscommun = vtkIdList::New();
+	  vtkIdList* temp = vtkIdList::New();
+	
+	  
+	  
+
+	  
+	  	  for (int j = 0; j < inputMesh_->GetCell(i)->GetNumberOfEdges(); j++)
+	  {
+		  for (int k = 0; k < inputMesh_->GetNumberOfCells(); k++)
+		  {
+			  
+			  for (int l = 0; l < inputMesh_->GetCell(k)->GetNumberOfEdges(); l++)
+			  {
+				  if (k != i)
+				  {
+					
+						  if (inputMesh_->GetCell(i)->GetEdge(j)->GetPointId(0) == inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(0))
+						  {
+							  pointscommun->InsertNextId(inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(0));
+						  }
+						  else if (inputMesh_->GetCell(i)->GetEdge(j)->GetPointId(0) == inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(1))
+						  {
+							  pointscommun->InsertNextId(inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(1));
+						  }
+						  else if (inputMesh_->GetCell(i)->GetEdge(j)->GetPointId(1) == inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(0))
+						  {
+							  pointscommun->InsertNextId(inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(0));
+						  }
+						  else if (inputMesh_->GetCell(i)->GetEdge(j)->GetPointId(1) == inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(1))
+						  {
+							  pointscommun->InsertNextId(inputMesh_->GetCell(j)->GetEdge(k)->GetPointId(1));
+						  }
+					  
+					  
+					
+				  }
+				  
+			  }
+			  
+		  }
+
+	  }
+		  
+			inputMesh_->GetCellNeighbors(i, pointscommun, temp);
+
+			//transfo temp en vector<Id>
+			vector<vtkIdType> sortie;
+
+			for (int p = 0; p < temp->GetNumberOfIds(); p++)
+			{
+				sortie.push_back(temp->GetId(p));
+			}
+			tetNeighbors_.push_back(sortie);
+ }
+ */
   
 
 
